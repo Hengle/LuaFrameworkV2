@@ -32,7 +32,9 @@ namespace LuaFramework {
             string url = Util.DataPath + bundleName.ToLower();
             if (File.Exists(url)) {
                 var bytes = File.ReadAllBytes(url);
-                AssetBundle bundle = AssetBundle.CreateFromMemoryImmediate(bytes);
+				// 已注释, CreateFromMemoryImmediate从5.3开始改为LoadFromMemory,需要用的请自行取消注释~
+				// AssetBundle bundle = AssetBundle.CreateFromMemoryImmediate(bytes);
+                AssetBundle bundle = AssetBundle.LoadFromMemory(bytes);
                 if (bundle != null)
                 {
                     bundleName = bundleName.Replace("lua/", "").Replace(".unity3d", "");
